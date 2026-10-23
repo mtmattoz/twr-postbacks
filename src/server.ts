@@ -2,11 +2,13 @@ import "dotenv/config";
 import express, { type ErrorRequestHandler } from "express";
 import { initDb } from "./db";
 import { webhooksRouter } from "./webhooks";
+import { reportRouter } from "./report";
 
 const app = express();
 
 app.use(express.json());
 app.use(webhooksRouter);
+app.use(reportRouter);
 
 app.get("/health", (_req, res) => {
   res.json({ status: "ok" });
